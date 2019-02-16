@@ -5,22 +5,22 @@ from microbit import *
 radio.on()
 
 
-while True:
-    await=random.randint(100,8000)
-    sleep(await)
-    display.set_pixel(2,2,9)
-    radio.send('hep')
-    while True:
-        incoming = radio.receive()
-        if incoming == 'nyt':
-            radio.send('w')
-            display.show("L")
-            sleep(2000)
-            break
-        if button_a.is_pressed():
-            display.show("W")
-            radio.send('l')
-            sleep(2000)
-            break
+while True:                                 #main loop
+    await=random.randint(100,8000)          #random time 0.1s to 8 s
+    sleep(await)                            
+    display.set_pixel(2,2,9)                #when time is up show 1 pixel at center of display
+    radio.send('hep')                       #and send hep msg to radio channel
+    while True:                             #wait loop
+        incoming = radio.receive()          #start listening other board respond
+        if incoming == 'nyt':               #if other player is faster
+            radio.send('w')                 #send 'w' to board
+            display.show("L")               #and show 'L' to this board
+            sleep(2000)                     #wait 2 s
+            break                           #and break wait loop
+        if button_a.is_pressed():           #if player 1 is faster
+            display.show("W")               #show 'W' on this board
+            radio.send('l')                 #and send l to other board
+            sleep(2000)                     #wait 2 s
+            break                           #and break wait loop
         
-    display.clear()
+    display.clear()                         #clear screen
