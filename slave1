@@ -1,0 +1,25 @@
+import radio
+from microbit import *
+
+radio.on()
+
+while True:
+    race = radio.receive()
+    
+    if race == 'hep':
+        display.set_pixel(2,2,9)
+        
+    if button_a.get_presses():
+        radio.send('nyt')
+        print("nyt")
+    if race == 'l':
+        display.show("L")
+        sleep(2000)
+        display.clear()
+        print("havio")
+    if race == 'w':
+        display.show("W")
+        sleep(2000)
+        display.clear()
+        print ("voitto")
+    
