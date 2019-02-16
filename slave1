@@ -3,23 +3,23 @@ from microbit import *
 
 radio.on()
 
-while True:
-    race = radio.receive()
+while True:                             #main loop
+    race = radio.receive()              #start receing radio
     
-    if race == 'hep':
-        display.set_pixel(2,2,9)
+    if race == 'hep':                   #if getting 'hep'
+        display.set_pixel(2,2,9)        #show pixel at center of screen
         
-    if button_a.get_presses():
-        radio.send('nyt')
-        print("nyt")
-    if race == 'l':
-        display.show("L")
-        sleep(2000)
-        display.clear()
-        print("havio")
-    if race == 'w':
-        display.show("W")
-        sleep(2000)
-        display.clear()
-        print ("voitto")
+    if button_a.get_presses():          #if button is pressed
+        radio.send('nyt')               #send 'nyt' to master board
+        print("nyt")                    #debug
+    if race == 'l':                     #if received 'l' player loses
+        display.show("L")               #show 'L' on screen
+        sleep(2000)                     #and wait 2 s
+        display.clear()                 #clear display
+        print("havio")                  #debug
+    if race == 'w':                     #if received 'w' player wins
+        display.show("W")               #show 'W' on screen
+        sleep(2000)                     #and wait 2 s
+        display.clear()                 #display clear
+        print ("voitto")                #debug
     
