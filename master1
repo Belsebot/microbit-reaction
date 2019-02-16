@@ -1,0 +1,26 @@
+import radio
+import random
+from microbit import *
+
+radio.on()
+
+
+while True:
+    await=random.randint(100,8000)
+    sleep(await)
+    display.set_pixel(2,2,9)
+    radio.send('hep')
+    while True:
+        incoming = radio.receive()
+        if incoming == 'nyt':
+            radio.send('w')
+            display.show("L")
+            sleep(2000)
+            break
+        if button_a.is_pressed():
+            display.show("W")
+            radio.send('l')
+            sleep(2000)
+            break
+        
+    display.clear()
